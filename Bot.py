@@ -50,7 +50,7 @@ async def keep_alive():
                     print("Keep-alive ping sent.")
             except Exception as e:
                 print(f"Error sending keep-alive ping: {e}")
-            await asyncio.sleep(40) 
+            await asyncio.sleep(10) 
 
 
 async def main() -> None:
