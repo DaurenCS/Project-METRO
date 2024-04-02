@@ -11,6 +11,7 @@ from aiogram.types import Message
 from aiogram.utils.markdown import hbold
 from keyboards import make_row_keyboard, start_text
 from aiogram import Router, F
+import aiohttp
 
 TOKEN = "6471247671:AAGAFa1jDG7H7wXFZ0TqYQje_b8XJvpI12U"
 
@@ -40,10 +41,21 @@ async def echo_handler(message: types.Message) -> None:
     except TypeError:
         await message.answer("Nice try!")
 
+async def keep_alive(): 
+    async with aiohttp.ClientSession() as session:
+        while True:
+            try:
+                async with session.get(url) as response:
+                    response.raise_for_status()
+                    print("Keep-alive ping sent.")
+            except Exception as e:
+                print(f"Error sending keep-alive ping: {e}")
+            await asyncio.sleep(40) 
 
 
 async def main() -> None:
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
+    asyncio.ensure_future(keep_alive())
     await dp.start_polling(bot)
 
 
