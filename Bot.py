@@ -41,21 +41,9 @@ async def echo_handler(message: types.Message) -> None:
     except TypeError:
         await message.answer("Nice try!")
 
-async def keep_alive(): 
-    async with aiohttp.ClientSession() as session:
-        while True:
-            try:
-                async with session.get(url) as response:
-                    response.raise_for_status()
-                    print("Keep-alive ping sent.")
-            except Exception as e:
-                print(f"Error sending keep-alive ping: {e}")
-            await asyncio.sleep(10) 
-
 
 async def main() -> None:
     bot = Bot(TOKEN, parse_mode=ParseMode.HTML)
-    asyncio.ensure_future(keep_alive())
     await dp.start_polling(bot)
 
 
