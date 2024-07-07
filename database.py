@@ -1,7 +1,7 @@
 
 import json
 import requests
-url = "https://metroalmaty.kz/_next/data/io4Wd4ICBKVEM2Bfe1a7V/ru/poor-vision/schedule.json"
+url = "https://metroalmaty.kz/_next/data/ytII1wyCinohRr4lU5bfD/ru/poor-vision/schedule.json"
 
 def fetch_schedule(url):
     try:
